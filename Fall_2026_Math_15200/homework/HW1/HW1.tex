@@ -1,0 +1,95 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Homework 1: Limits and Continuity}
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{0.8em}
+
+\textbf{Due:} Monday, October 5, 2026, at 11:59 PM.
+
+This is the written portion of Homework 1; complete the routine online portion
+separately in Edfinity. Upload your written solutions to Canvas. You may
+collaborate, but you must write and submit your own solutions independently.
+
+\vspace{0.3em}
+
+\noindent\fbox{%
+  \parbox{0.955\textwidth}{%
+    \textbf{Definition.}
+    Let $f$ be a real-valued function defined near $a$, possibly not at $a$.
+    We say
+    \[
+      \lim_{x\to a} f(x)=L
+    \]
+    if, for every $\varepsilon>0$, there exists $\delta>0$ such that, whenever
+    $x$ is in the domain of $f$,
+    \[
+      0<|x-a|<\delta
+      \quad\Longrightarrow\quad
+      |f(x)-L|<\varepsilon.
+    \]
+    If $f(a)$ is defined, then $f$ is \textbf{continuous at $a$} when
+    \[
+      \lim_{x\to a} f(x)=f(a).
+    \]
+  }%
+}
+
+\vspace{0.8em}
+
+Rewrite each of the problems below in terms of the epsilon-delta definiton above. 
+Explicitly state your choice of \(\delta\) when necessary.
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=1.25em]
+  \item Prove directly from the epsilon--delta definition that
+    \[
+      \lim_{x\to 2}\bigl(x^2-1\bigr)=3.
+    \]
+
+    \emph{Hint:} Impose a simple bound such as $|x-2|<1$.
+
+  \item Define a function \(f\) by the piecewise expression
+    \[
+      f(x)=
+      \begin{cases}
+        0, & x<0,\\
+        1, & x\geq 0.
+      \end{cases}
+    \]
+    Prove directly from the definition that $f$ is not continuous at $0$.
+
+    \emph{Hint:} Choose a fixed positive $\varepsilon$ and consider points
+    immediately to the left of $0$.
+
+  \item Suppose that $f$ and $g$ are real-valued functions defined near $a$ and
+    that
+    \[
+      \lim_{x\to a}f(x)=L
+      \qquad\text{and}\qquad
+      \lim_{x\to a}g(x)=M.
+    \]
+    Prove from the epsilon--delta definition that
+    \[
+      \lim_{x\to a}\bigl(f(x)+g(x)\bigr)=L+M.
+    \]
+
+    \emph{Hint:} Apply the two hypotheses using $\varepsilon/2$ and combine
+    the resulting choices of $\delta$.
+\end{enumerate}
+
+\end{document}
