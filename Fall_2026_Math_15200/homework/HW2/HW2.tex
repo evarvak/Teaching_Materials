@@ -1,0 +1,89 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Homework 2: Properties of the Integral}
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{0.8em}
+
+\textbf{Due:} Monday, October 12, 2026, at 11:59 PM.
+
+This is the written portion of Homework 2; complete the routine online portion
+separately in Edfinity. Upload your written solutions to Gradescope, via Canvas. You may
+collaborate, but you must write and submit your own solutions independently.
+
+\vspace{0.3em}
+
+\noindent\fbox{%
+  \parbox{0.955\textwidth}{%
+    \textbf{Recall:}
+    Let $f$ be continuous on an open interval $I$, and fix $c$ in $I$.
+    By the Fundamental Theorem of Calculus, the function
+    $F(x)=\int_c^x f(t)\,dt$ is differentiable on $I$, with $F'(x)=f(x)$;
+    and if $G'=f$ on $I$, then
+    $\int_u^v f(t)\,dt=G(v)-G(u)$ for all $u$ and $v$ in $I$.
+    Moreover, for all $u$, $v$, and $w$ in $I$,
+    \[
+      \int_u^w f(t)\,dt=\int_u^v f(t)\,dt+\int_v^w f(t)\,dt
+      \qquad\text{and}\qquad
+      \int_v^u f(t)\,dt=-\int_u^v f(t)\,dt.
+    \]
+  }%
+}
+
+\vspace{0.8em}
+
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=1.25em]
+  \item Let $f$ be continuous on an open interval $I$, and let $a$ and $b$ be
+    differentiable functions whose values lie in $I$. Prove that
+    \[
+      \frac{d}{dx}\int_{a(x)}^{b(x)} f(t)\,dt
+      =f\bigl(b(x)\bigr)\,b'(x)-f\bigl(a(x)\bigr)\,a'(x).
+    \]
+
+    \emph{Hint:} Fix $c$ in $I$ and remember that \(\int_{a(x)}^{b(x)} f(t)dt = 
+    \int_{a(x)}^{c} f(t)dt + \int_{c}^{b(x)} f(t)dt\). Let $F(u)=\int_c^u f(t)\,dt$. 
+    First show that $\frac{d}{dx}\int_c^{b(x)} f(t)\,dt=f\bigl(b(x)\bigr)\,b'(x)$ by
+    writing this integral as $F\bigl(b(x)\bigr)$ and applying the chain rule.
+    Do a similar procedure with \(\int_{a(x)}^c f(t)dt\).
+
+  \item Suppose that $a<b$, that $f$ and $g$ are continuous on $[a,b]$, and that
+    $f(x)\le g(x)$ for all $x$ in $[a,b]$. Prove that
+    \[
+      \int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
+    \]
+
+    \emph{Hint:} Compare Riemann sums for $f$ and $g$ that use the same
+    partition of $[a,b]$ and the same sample points. Then take a limit,
+    recalling that limits preserve non-strict inequalities ($\le$).
+
+  \item The function $\sqrt{1+x^4}$ has no antiderivative given by a formula in
+    familiar functions, so the integral below cannot be evaluated directly with
+    the Fundamental Theorem of Calculus. Use Problem~2 to show that
+    \[
+      1\le\int_0^1\sqrt{1+x^4}\,dx\le\frac{11}{10}.
+    \]
+
+    \emph{Hint:} For the upper bound, show that
+    $\sqrt{1+x^4}\le 1+\tfrac{1}{2}x^4$ by expanding
+    $\bigl(1+\tfrac{1}{2}x^4\bigr)^2$ and comparing it with $1+x^4$; explain
+    why comparing squares is enough. Then integrate $1+\tfrac{1}{2}x^4$ over
+    $[0,1]$.
+\end{enumerate}
+
+\end{document}
