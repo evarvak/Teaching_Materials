@@ -1,0 +1,354 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{tikz}
+
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+% Solutions are hidden unless \showsolutions is defined; midterm1_key.tex does
+% this and then inputs this file, producing the answer key as a separate PDF.
+\newif\ifsolutions
+\ifdefined\showsolutions\solutionstrue\fi
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par{\color{blue!55!black}\textbf{Solution.} \BODY\par}%
+  \fi}
+
+\newcommand{\points}[1]{(#1 points)}
+\newcommand{\workspace}{\vfill\newpage}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Midterm 1}\\[0.3em]
+  Thursday, October 22, 2026
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{1.5em}
+
+\textbf{Name:} \rule{4in}{0.4pt}
+
+\ifsolutions
+  \begin{center}
+    {\color{blue!55!black}\large\bfseries ANSWER KEY}
+  \end{center}
+\fi
+
+\vspace{0.8em}
+
+\textbf{Instructions.} You have 80 minutes. No notes, books, calculators,
+phones, or other electronic devices are allowed. Show all of your work and
+justify your answers; a correct answer without supporting work may not receive
+full credit. Give exact answers (such as $\tfrac{\sqrt{2}}{3}$ or $5\pi$), not
+decimal approximations.
+
+\vfill
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c|c|p{1in}|}
+    \hline
+    \textbf{Problem} & \textbf{Points} & \textbf{Score} \\
+    \hline
+    1 & 20 & \\ \hline
+    2 & 10 & \\ \hline
+    3 & 10 & \\ \hline
+    4 & 10 & \\ \hline
+    5 & 15 & \\ \hline
+    6 & 20 & \\ \hline
+    7 & 15 & \\ \hline
+    \textbf{Total} & 100 & \\ \hline
+  \end{tabular}
+\end{center}
+
+\vfill
+\newpage
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em]
+  \item \points{20}
+    \begin{enumerate}[label=(\alph*)]
+      \item (10 points) Prove directly from the $\varepsilon$--$\delta$
+        definition that
+        \[
+          \lim_{x\to 3}\bigl(x^2-2x\bigr)=3.
+        \]
+
+        \begin{solution}
+          Let $\varepsilon>0$ and set $\delta=\min\{1,\varepsilon/5\}$.
+          Suppose $0<|x-3|<\delta$. Since $|x-3|<1$, we have $2<x<4$, so
+          $3<x+1<5$ and $|x+1|<5$. Therefore
+          \[
+            \bigl|(x^2-2x)-3\bigr|=|x-3|\,|x+1|\le 5|x-3|<5\delta\le\varepsilon.
+          \]
+        \end{solution}
+        \vfill
+
+      \item (10 points) Define a function $f$ by
+        \[
+          f(x)=
+          \begin{cases}
+            3, & x\neq 1,\\
+            5, & x=1.
+          \end{cases}
+        \]
+        Prove directly from the definition that $f$ is not continuous at $1$.
+
+        \begin{solution}
+          Since $f(1)=5$, we must show that $\lim_{x\to 1}f(x)=5$ is false:
+          that there is an $\varepsilon>0$ such that for every $\delta>0$,
+          some $x$ with $0<|x-1|<\delta$ has $|f(x)-5|\ge\varepsilon$. Take
+          $\varepsilon=1$. Given $\delta>0$, let $x=1+\delta/2$. Then
+          $0<|x-1|<\delta$ and $x\neq 1$, so
+          $|f(x)-5|=|3-5|=2\ge\varepsilon$. Hence $f$ is not continuous
+          at $1$. (Also valid, if uniqueness of limits was proved in class:
+          $\lim_{x\to 1}f(x)=3$, since any $\delta$ works, and $3\neq f(1)$.)
+        \end{solution}
+        \vfill
+    \end{enumerate}
+    \newpage
+
+  \item \points{10}
+    Let $f(x)=1/x$ on $[1,2]$, and let $P=\{1,\tfrac43,\tfrac53,2\}$.
+    \begin{enumerate}[label=(\alph*)]
+      \item Compute the lower sum $L_f(P)$ and the upper sum $U_f(P)$.
+
+        \begin{solution}
+          Each subinterval has length $\tfrac13$. Since $f$ is decreasing on
+          $[1,2]$, its minimum on each subinterval is at the right endpoint
+          and its maximum is at the left endpoint. Hence
+          \[
+            L_f(P)=\frac13\Bigl(\frac34+\frac35+\frac12\Bigr)
+              =\frac13\cdot\frac{37}{20}=\frac{37}{60},
+            \qquad
+            U_f(P)=\frac13\Bigl(1+\frac34+\frac35\Bigr)
+              =\frac13\cdot\frac{47}{20}=\frac{47}{60}.
+          \]
+        \end{solution}
+        \vfill
+
+      \item Use part (a) to find numbers $A$ and $B$ such that
+        \[
+          A\le\int_1^2\frac{dx}{x}\le B,
+        \]
+        and explain why these inequalities hold.
+
+        \begin{solution}
+          Take $A=L_f(P)$ and $B=U_f(P)$: the integral lies between every
+          lower sum and every upper sum, so
+          \[
+            \frac{37}{60}\le\int_1^2\frac{dx}{x}\le\frac{47}{60}.
+          \]
+        \end{solution}
+        \vfill
+    \end{enumerate}
+    \newpage
+
+  \item \points{10}
+    For $x>0$, let
+    \[
+      F(x)=\int_{x}^{x^2}\sqrt{t^3+8}\,dt.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+      \item Find $F'(x)$.
+
+        \begin{solution}
+          By the Fundamental Theorem of Calculus and the chain rule (as in
+          Homework~2, Problem~1),
+          \[
+            F'(x)=\sqrt{(x^2)^3+8}\cdot 2x-\sqrt{x^3+8}\cdot 1
+              =2x\sqrt{x^6+8}-\sqrt{x^3+8}.
+          \]
+        \end{solution}
+        \vfill
+
+      \item Find an equation of the tangent line to the graph of $F$ at
+        $x=1$.
+
+        \begin{solution}
+          $F(1)=\int_1^1\sqrt{t^3+8}\,dt=0$ and $F'(1)=2\sqrt9-\sqrt9=3$, so
+          the tangent line is $y=3(x-1)$, that is, $y=3x-3$.
+        \end{solution}
+        \vfill
+    \end{enumerate}
+    \newpage
+
+  \item \points{10}
+    Evaluate the following integrals.
+    \begin{enumerate}[label=(\alph*)]
+      \item (5 points)\quad
+        $\displaystyle\int\cos x\,\sqrt{1+\sin x}\,dx$
+
+        \begin{solution}
+          Let $u=1+\sin x$, so $du=\cos x\,dx$. Then
+          \[
+            \int\cos x\,\sqrt{1+\sin x}\,dx=\int\sqrt{u}\,du
+            =\frac23u^{3/2}+C=\frac23(1+\sin x)^{3/2}+C.
+          \]
+        \end{solution}
+        \vfill
+
+      \item (5 points)\quad
+        $\displaystyle\int_1^4\frac{dx}{\sqrt{x}\,\bigl(1+\sqrt{x}\bigr)^2}$
+
+        \begin{solution}
+          Let $u=1+\sqrt{x}$, so $du=\dfrac{dx}{2\sqrt{x}}$; when $x=1$,
+          $u=2$, and when $x=4$, $u=3$. Then
+          \[
+            \int_1^4\frac{dx}{\sqrt{x}\,\bigl(1+\sqrt{x}\bigr)^2}
+            =\int_2^3\frac{2\,du}{u^2}
+            =\Bigl[-\frac{2}{u}\Bigr]_2^3=-\frac23+1=\frac13.
+          \]
+        \end{solution}
+        \vfill
+    \end{enumerate}
+    \newpage
+
+  \item \points{15}
+    Find the total area of the region enclosed by the curves $y=x^3$ and
+    $y=x^2+2x$.
+
+    \begin{solution}
+      The curves meet where $x^3=x^2+2x$, that is, $x(x+1)(x-2)=0$, so at
+      $x=-1$, $0$, and $2$. On $[-1,0]$ the cubic is on top (at
+      $x=-\tfrac12$: $-\tfrac18>-\tfrac34$), and on $[0,2]$ the parabola is
+      on top (at $x=1$: $3>1$). Hence the area is
+      \begin{align*}
+        A&=\int_{-1}^{0}\bigl(x^3-x^2-2x\bigr)\,dx
+           +\int_0^2\bigl(x^2+2x-x^3\bigr)\,dx\\
+         &=\Bigl[\frac{x^4}{4}-\frac{x^3}{3}-x^2\Bigr]_{-1}^{0}
+           +\Bigl[\frac{x^3}{3}+x^2-\frac{x^4}{4}\Bigr]_0^2
+          =\frac{5}{12}+\frac83=\frac{37}{12}.
+      \end{align*}
+    \end{solution}
+    \workspace
+
+  \item \points{20}
+    Let $r>0$ and $h>0$. A \emph{torus} is the solid formed by revolving a
+    disk of radius $r$ about a line in the plane of the disk whose distance
+    from the nearest point of the disk is $h$; thus the hole in the middle
+    of the torus has radius $h$ (see the figure). Find the volume of the
+    torus in terms of $r$ and $h$.
+
+    \begin{center}
+      % Tube radius r, hole radius h, and viewing elevation in degrees.
+      \pgfmathsetmacro{\tubeR}{0.65}
+      \pgfmathsetmacro{\holeR}{1.3}
+      \pgfmathsetmacro{\elev}{30}
+      \pgfmathsetmacro{\ctrR}{\holeR+\tubeR}
+      \begin{tikzpicture}[
+          axis/.style={thin, dash dot},
+          declare function={
+            % Silhouette angle around the tube at angle t around the axis.
+            sil(\t) = atan(sin(\t)*cot(\elev));
+            outx(\t) = (\ctrR + \tubeR*cos(sil(\t)))*cos(\t);
+            outy(\t) = (\ctrR + \tubeR*cos(sil(\t)))*sin(\t)*sin(\elev)
+                       + \tubeR*sin(sil(\t))*cos(\elev);
+            inx(\t) = (\ctrR - \tubeR*cos(sil(\t)))*cos(\t);
+            iny(\t) = (\ctrR - \tubeR*cos(sil(\t)))*sin(\t)*sin(\elev)
+                      - \tubeR*sin(sil(\t))*cos(\elev);
+          },
+        ]
+        % The angle ranges below were computed for h = 2r and a 30 degree
+        % elevation: the inner rim is visible for 195.5 <= t <= 344.5 (front)
+        % and 30.6 <= t <= 149.4 (back), and the two cross at t = 210.6,
+        % 329.4 (front) and t = 30.6, 149.4 (back).
+        \fill[gray!15] plot[domain=0:360, samples=181, variable=\t]
+          ({outx(\t)}, {outy(\t)}) -- cycle;
+        \fill[white] plot[domain=210.6:329.4, samples=60, variable=\t]
+            ({inx(\t)}, {iny(\t)})
+          -- plot[domain=30.6:149.4, samples=60, variable=\t]
+            ({inx(\t)}, {iny(\t)}) -- cycle;
+        \draw plot[domain=0:360, samples=181, variable=\t]
+          ({outx(\t)}, {outy(\t)}) -- cycle;
+        \draw plot[domain=195.5:344.5, samples=80, variable=\t]
+          ({inx(\t)}, {iny(\t)});
+        \draw plot[domain=30.6:149.4, samples=60, variable=\t]
+          ({inx(\t)}, {iny(\t)});
+        % Axis of revolution, hidden where it passes behind the front of the
+        % torus.
+        \draw[axis] (0,{\ctrR*sin(\elev)+\tubeR+0.6})
+          -- (0,{\tubeR-\ctrR*sin(\elev)});
+        \draw[axis] (0,{-\ctrR*sin(\elev)-\tubeR})
+          -- (0,{-\ctrR*sin(\elev)-\tubeR-0.5});
+        \draw[->, thin] (0,{\ctrR*sin(\elev)+\tubeR+0.35}) ++(200:0.35 and 0.12)
+          arc[start angle=200, end angle=500, x radius=0.35, y radius=0.12];
+        \node[font=\small] at (0,-2.65) {the torus};
+
+        % The disk being revolved, in a plane containing the axis.
+        \begin{scope}[xshift=4.6cm]
+          \draw[axis] (0,-1.6) -- (0,{\ctrR*sin(\elev)+\tubeR+0.6});
+          \draw[->, thin] (0,{\ctrR*sin(\elev)+\tubeR+0.35}) ++(200:0.35 and 0.12)
+            arc[start angle=200, end angle=500, x radius=0.35, y radius=0.12];
+          \fill[gray!15] (\ctrR,0) circle[radius=\tubeR];
+          \draw (\ctrR,0) circle[radius=\tubeR];
+          \fill (\ctrR,0) circle[radius=1.2pt];
+          \draw (\ctrR,0) -- node[above left, inner sep=1pt] {$r$}
+            ++(60:\tubeR);
+          \draw[<->] (0,0) -- node[below] {$h$} (\holeR,0);
+          \node[font=\small] at (1.3,-2.65) {the disk and the axis};
+        \end{scope}
+      \end{tikzpicture}
+    \end{center}
+
+    \begin{solution}
+      Place the axis of revolution along the $y$-axis and the center of the
+      disk at $(h+r,0)$, so that the disk is
+      $\bigl(x-(h+r)\bigr)^2+y^2\le r^2$. For $-r\le y\le r$, the
+      cross-section of the torus at height $y$ is a washer with outer radius
+      $(h+r)+\sqrt{r^2-y^2}$ and inner radius $(h+r)-\sqrt{r^2-y^2}$, so its
+      area is
+      \[
+        A(y)=\pi\Bigl[\bigl(h+r+\sqrt{r^2-y^2}\bigr)^2
+          -\bigl(h+r-\sqrt{r^2-y^2}\bigr)^2\Bigr]
+        =4\pi(h+r)\sqrt{r^2-y^2}.
+      \]
+      The integral $\int_{-r}^{r}\sqrt{r^2-y^2}\,dy$ is the area of a
+      half-disk of radius $r$, namely $\pi r^2/2$. Hence
+      \[
+        V=\int_{-r}^{r}4\pi(h+r)\sqrt{r^2-y^2}\,dy
+         =4\pi(h+r)\cdot\frac{\pi r^2}{2}=2\pi^2r^2(h+r).
+      \]
+      (Shells also work:
+      $V=\int_h^{h+2r}2\pi x\cdot 2\sqrt{r^2-(x-h-r)^2}\,dx$; after
+      substituting $u=x-(h+r)$, the term $\int_{-r}^{r}u\sqrt{r^2-u^2}\,du$
+      vanishes by symmetry.) As a check, $r=1$ and $h=2$ give $6\pi^2$, the
+      answer to Homework~3, Problem~2.
+    \end{solution}
+    \workspace
+
+  \item \points{15}
+    Let $R$ be the region bounded by the curve $y=\sqrt{x}$, the $x$-axis,
+    and the line $x=4$. Find the volume of the solid obtained by revolving
+    $R$ about the line $x=4$.
+
+    \begin{solution}
+      \emph{Shells.} The vertical strip at $x$, for $0\le x\le 4$, has height
+      $\sqrt{x}$ and lies at distance $4-x$ from the axis, so
+      \[
+        V=\int_0^4 2\pi(4-x)\sqrt{x}\,dx
+         =2\pi\Bigl[\frac83x^{3/2}-\frac25x^{5/2}\Bigr]_0^4
+         =2\pi\Bigl(\frac{64}{3}-\frac{64}{5}\Bigr)=\frac{256\pi}{15}.
+      \]
+      \emph{Washers.} The cross-section at height $y$, for $0\le y\le 2$, is
+      a disk of radius $4-y^2$, so
+      \[
+        V=\pi\int_0^2\bigl(4-y^2\bigr)^2\,dy
+         =\pi\Bigl(32-\frac{64}{3}+\frac{32}{5}\Bigr)=\frac{256\pi}{15}.
+      \]
+    \end{solution}
+    \vfill
+\end{enumerate}
+
+\end{document}
