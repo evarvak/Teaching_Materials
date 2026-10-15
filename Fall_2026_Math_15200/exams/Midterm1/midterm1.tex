@@ -140,7 +140,7 @@ decimal approximations.
 
       \item Use part (a) to find numbers $A$ and $B$ such that
         \[
-          A\le\int_1^2\frac{dx}{x}\le B,
+          A\le \mathrm{ln}(2) \le B,
         \]
         and explain why these inequalities hold.
 
@@ -235,11 +235,11 @@ decimal approximations.
     \workspace
 
   \item \points{20}
-    Let $r>0$ and $h>0$. A \emph{torus} is the solid formed by revolving a
-    disk of radius $r$ about a line in the plane of the disk whose distance
-    from the nearest point of the disk is $h$; thus the hole in the middle
-    of the torus has radius $h$ (see the figure). Find the volume of the
-    torus in terms of $r$ and $h$.
+    Let $r>0$ and $h>0$. Revolving the disk
+    $x^2+\bigl(y-(h+r)\bigr)^2\le r^2$, which has radius $r$ and center
+    $(0,h+r)$, about the $x$-axis produces a solid called a \emph{torus};
+    the hole in the middle of the torus has radius $h$ (see the figure).
+    Find the volume of the torus in terms of $r$ and $h$.
 
     \begin{center}
       % Tube radius r, hole radius h, and viewing elevation in degrees.
@@ -260,69 +260,81 @@ decimal approximations.
                       - \tubeR*sin(sil(\t))*cos(\elev);
           },
         ]
-        % The angle ranges below were computed for h = 2r and a 30 degree
-        % elevation: the inner rim is visible for 195.5 <= t <= 344.5 (front)
-        % and 30.6 <= t <= 149.4 (back), and the two cross at t = 210.6,
-        % 329.4 (front) and t = 30.6, 149.4 (back).
-        \fill[gray!15] plot[domain=0:360, samples=181, variable=\t]
-          ({outx(\t)}, {outy(\t)}) -- cycle;
-        \fill[white] plot[domain=210.6:329.4, samples=60, variable=\t]
-            ({inx(\t)}, {iny(\t)})
-          -- plot[domain=30.6:149.4, samples=60, variable=\t]
-            ({inx(\t)}, {iny(\t)}) -- cycle;
-        \draw plot[domain=0:360, samples=181, variable=\t]
-          ({outx(\t)}, {outy(\t)}) -- cycle;
-        \draw plot[domain=195.5:344.5, samples=80, variable=\t]
-          ({inx(\t)}, {iny(\t)});
-        \draw plot[domain=30.6:149.4, samples=60, variable=\t]
-          ({inx(\t)}, {iny(\t)});
-        % Axis of revolution, hidden where it passes behind the front of the
-        % torus.
-        \draw[axis] (0,{\ctrR*sin(\elev)+\tubeR+0.6})
-          -- (0,{\tubeR-\ctrR*sin(\elev)});
-        \draw[axis] (0,{-\ctrR*sin(\elev)-\tubeR})
-          -- (0,{-\ctrR*sin(\elev)-\tubeR-0.5});
-        \draw[->, thin] (0,{\ctrR*sin(\elev)+\tubeR+0.35}) ++(200:0.35 and 0.12)
-          arc[start angle=200, end angle=500, x radius=0.35, y radius=0.12];
-        \node[font=\small] at (0,-2.65) {the torus};
-
-        % The disk being revolved, in a plane containing the axis.
-        \begin{scope}[xshift=4.6cm]
-          \draw[axis] (0,-1.6) -- (0,{\ctrR*sin(\elev)+\tubeR+0.6});
-          \draw[->, thin] (0,{\ctrR*sin(\elev)+\tubeR+0.35}) ++(200:0.35 and 0.12)
+        % The torus is drawn with its axis vertical, seen from \elev degrees
+        % above its middle plane, and then turned a quarter turn clockwise so
+        % that its axis is horizontal.
+        \begin{scope}[rotate=-90]
+          % The angle ranges below were computed for h = 2r and a 30 degree
+          % elevation: the inner rim is visible for 195.5 <= t <= 344.5
+          % (front) and 30.6 <= t <= 149.4 (back), and the two cross at
+          % t = 210.6, 329.4 (front) and t = 30.6, 149.4 (back).
+          \fill[gray!15] plot[domain=0:360, samples=181, variable=\t]
+            ({outx(\t)}, {outy(\t)}) -- cycle;
+          \fill[white] plot[domain=210.6:329.4, samples=60, variable=\t]
+              ({inx(\t)}, {iny(\t)})
+            -- plot[domain=30.6:149.4, samples=60, variable=\t]
+              ({inx(\t)}, {iny(\t)}) -- cycle;
+          \draw plot[domain=0:360, samples=181, variable=\t]
+            ({outx(\t)}, {outy(\t)}) -- cycle;
+          \draw plot[domain=195.5:344.5, samples=80, variable=\t]
+            ({inx(\t)}, {iny(\t)});
+          \draw plot[domain=30.6:149.4, samples=60, variable=\t]
+            ({inx(\t)}, {iny(\t)});
+          % Axis of revolution, hidden where it passes behind the front of
+          % the torus.
+          \draw[axis] (0,{\ctrR*sin(\elev)+\tubeR+0.6})
+            -- (0,{\tubeR-\ctrR*sin(\elev)});
+          \draw[axis] (0,{-\ctrR*sin(\elev)-\tubeR})
+            -- (0,{-\ctrR*sin(\elev)-\tubeR-0.5});
+          \draw[->, thin] (0,{\ctrR*sin(\elev)+\tubeR+0.35})
+            ++(200:0.35 and 0.12)
             arc[start angle=200, end angle=500, x radius=0.35, y radius=0.12];
-          \fill[gray!15] (\ctrR,0) circle[radius=\tubeR];
-          \draw (\ctrR,0) circle[radius=\tubeR];
-          \fill (\ctrR,0) circle[radius=1.2pt];
-          \draw (\ctrR,0) -- node[above left, inner sep=1pt] {$r$}
-            ++(60:\tubeR);
-          \draw[<->] (0,0) -- node[below] {$h$} (\holeR,0);
-          \node[font=\small] at (1.3,-2.65) {the disk and the axis};
         \end{scope}
+        \node[font=\small] at (0,{-\ctrR-\tubeR-0.45}) {the torus};
+
+        % The disk being revolved, in the xy-plane; the axis of revolution is
+        % the x-axis.
+        \begin{scope}[xshift=4.7cm, yshift=-1.5cm]
+          \fill[gray!15] (0,\ctrR) circle[radius=\tubeR];
+          \draw (0,\ctrR) circle[radius=\tubeR];
+          \draw[->] (-1.4,0) -- (1.6,0) node[right] {$x$};
+          \draw[->] (0,-0.4) -- (0,{\ctrR+\tubeR+0.45}) node[above] {$y$};
+          \draw[->, thin] (1.2,0) ++(110:0.12 and 0.35)
+            arc[start angle=110, end angle=410, x radius=0.12, y radius=0.35];
+          \fill (0,\ctrR) circle[radius=1.2pt];
+          \draw (0,\ctrR) -- node[above, inner sep=1pt] {$r$} ++(\tubeR,0);
+          \draw[thin] (0,\holeR) -- (-0.55,\holeR);
+          \draw[<->] (-0.4,0) -- node[left] {$h$} (-0.4,\holeR);
+        \end{scope}
+        \node[font=\small] at (4.85,{-\ctrR-\tubeR-0.45})
+          {the disk and the axis};
       \end{tikzpicture}
     \end{center}
 
+    \emph{Hint:} Use the washer method, and note that
+    $\int_{-r}^{r}\sqrt{r^2-x^2}\,dx$ is the area of a semicircle of
+    radius~$r$.
+
     \begin{solution}
-      Place the axis of revolution along the $y$-axis and the center of the
-      disk at $(h+r,0)$, so that the disk is
-      $\bigl(x-(h+r)\bigr)^2+y^2\le r^2$. For $-r\le y\le r$, the
-      cross-section of the torus at height $y$ is a washer with outer radius
-      $(h+r)+\sqrt{r^2-y^2}$ and inner radius $(h+r)-\sqrt{r^2-y^2}$, so its
-      area is
+      The disk is bounded above and below by the semicircles
+      $y=(h+r)\pm\sqrt{r^2-x^2}$, for $-r\le x\le r$. So the cross-section
+      of the torus perpendicular to the $x$-axis at $x$ is a washer with
+      outer radius $(h+r)+\sqrt{r^2-x^2}$ and inner radius
+      $(h+r)-\sqrt{r^2-x^2}$, and its area is
       \[
-        A(y)=\pi\Bigl[\bigl(h+r+\sqrt{r^2-y^2}\bigr)^2
-          -\bigl(h+r-\sqrt{r^2-y^2}\bigr)^2\Bigr]
-        =4\pi(h+r)\sqrt{r^2-y^2}.
+        A(x)=\pi\Bigl[\bigl(h+r+\sqrt{r^2-x^2}\bigr)^2
+          -\bigl(h+r-\sqrt{r^2-x^2}\bigr)^2\Bigr]
+        =4\pi(h+r)\sqrt{r^2-x^2}.
       \]
-      The integral $\int_{-r}^{r}\sqrt{r^2-y^2}\,dy$ is the area of a
-      half-disk of radius $r$, namely $\pi r^2/2$. Hence
+      The integral $\int_{-r}^{r}\sqrt{r^2-x^2}\,dx$ is the area of a
+      semicircle of radius $r$, namely $\pi r^2/2$. Hence
       \[
-        V=\int_{-r}^{r}4\pi(h+r)\sqrt{r^2-y^2}\,dy
+        V=\int_{-r}^{r}4\pi(h+r)\sqrt{r^2-x^2}\,dx
          =4\pi(h+r)\cdot\frac{\pi r^2}{2}=2\pi^2r^2(h+r).
       \]
       (Shells also work:
-      $V=\int_h^{h+2r}2\pi x\cdot 2\sqrt{r^2-(x-h-r)^2}\,dx$; after
-      substituting $u=x-(h+r)$, the term $\int_{-r}^{r}u\sqrt{r^2-u^2}\,du$
+      $V=\int_h^{h+2r}2\pi y\cdot 2\sqrt{r^2-(y-h-r)^2}\,dy$; after
+      substituting $u=y-(h+r)$, the term $\int_{-r}^{r}u\sqrt{r^2-u^2}\,du$
       vanishes by symmetry.) As a check, $r=1$ and $h=2$ give $6\pi^2$, the
       answer to Homework~3, Problem~2.
     \end{solution}
