@@ -31,7 +31,7 @@
 \begin{center}
   {\large\bfseries MATH 15200: Calculus II}\\
   {\large\bfseries Midterm 1}\\[0.3em]
-  Thursday, October 22, 2026
+  Tuesday, October 27, 2026
 \end{center}
 
 \vspace{0.25em}
@@ -52,7 +52,10 @@
 phones, or other electronic devices are allowed. Show all of your work and
 justify your answers; a correct answer without supporting work may not receive
 full credit. Give exact answers (such as $\tfrac{\sqrt{2}}{3}$ or $5\pi$), not
-decimal approximations.
+decimal approximations. The last page is extra space. If you run out of room
+on a problem, you may continue your answer there; if you do, write on that
+problem's page that your answer continues on the last page, and label your
+work on the last page with the problem number.
 
 \vfill
 
@@ -63,12 +66,11 @@ decimal approximations.
     \textbf{Problem} & \textbf{Points} & \textbf{Score} \\
     \hline
     1 & 20 & \\ \hline
-    2 & 10 & \\ \hline
-    3 & 10 & \\ \hline
+    2 & 15 & \\ \hline
+    3 & 15 & \\ \hline
     4 & 10 & \\ \hline
     5 & 15 & \\ \hline
-    6 & 20 & \\ \hline
-    7 & 15 & \\ \hline
+    6 & 25 & \\ \hline
     \textbf{Total} & 100 & \\ \hline
   \end{tabular}
 \end{center}
@@ -79,7 +81,7 @@ decimal approximations.
 \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em]
   \item \points{20}
     \begin{enumerate}[label=(\alph*)]
-      \item (10 points) Prove directly from the $\varepsilon$--$\delta$
+      \item \points{10} Prove directly from the $\varepsilon$--$\delta$
         definition that
         \[
           \lim_{x\to 3}\bigl(x^2-2x\bigr)=3.
@@ -95,7 +97,7 @@ decimal approximations.
         \end{solution}
         \vfill
 
-      \item (10 points) Define a function $f$ by
+      \item \points{10} Define a function $f$ by
         \[
           f(x)=
           \begin{cases}
@@ -119,10 +121,11 @@ decimal approximations.
     \end{enumerate}
     \newpage
 
-  \item \points{10}
+  \item \points{15}
     Let $f(x)=1/x$ on $[1,2]$, and let $P=\{1,\tfrac43,\tfrac53,2\}$.
     \begin{enumerate}[label=(\alph*)]
-      \item Compute the lower sum $L_f(P)$ and the upper sum $U_f(P)$.
+      \item \points{10} Compute the lower sum $L_f(P)$ and the upper sum
+        $U_f(P)$.
 
         \begin{solution}
           Each subinterval has length $\tfrac13$. Since $f$ is decreasing on
@@ -138,30 +141,32 @@ decimal approximations.
         \end{solution}
         \vfill
 
-      \item Use part (a) to find numbers $A$ and $B$ such that
+      \item \points{5} Use part (a) to find numbers $A$ and $B$ such that
         \[
-          A\le \mathrm{ln}(2) \le B,
+          A\le \ln(2) \le B,
         \]
         and explain why these inequalities hold.
 
         \begin{solution}
-          Take $A=L_f(P)$ and $B=U_f(P)$: the integral lies between every
-          lower sum and every upper sum, so
+          Take $A=L_f(P)$ and $B=U_f(P)$. By the definition of the natural
+          logarithm, $\ln 2=\int_1^2\frac{dx}{x}$ (or by the Fundamental
+          Theorem of Calculus, since $\frac{d}{dx}\ln x=\frac1x$), and the
+          integral lies between every lower sum and every upper sum, so
           \[
-            \frac{37}{60}\le\int_1^2\frac{dx}{x}\le\frac{47}{60}.
+            \frac{37}{60}\le\ln 2=\int_1^2\frac{dx}{x}\le\frac{47}{60}.
           \]
         \end{solution}
         \vfill
     \end{enumerate}
     \newpage
 
-  \item \points{10}
+  \item \points{15}
     For $x>0$, let
     \[
       F(x)=\int_{x}^{x^2}\sqrt{t^3+8}\,dt.
     \]
     \begin{enumerate}[label=(\alph*)]
-      \item Find $F'(x)$.
+      \item \points{10} Find $F'(x)$.
 
         \begin{solution}
           By the Fundamental Theorem of Calculus and the chain rule (as in
@@ -173,8 +178,8 @@ decimal approximations.
         \end{solution}
         \vfill
 
-      \item Find an equation of the tangent line to the graph of $F$ at
-        $x=1$.
+      \item \points{5} Find an equation of the tangent line to the graph of
+        $F$ at $x=1$.
 
         \begin{solution}
           $F(1)=\int_1^1\sqrt{t^3+8}\,dt=0$ and $F'(1)=2\sqrt9-\sqrt9=3$, so
@@ -187,7 +192,7 @@ decimal approximations.
   \item \points{10}
     Evaluate the following integrals.
     \begin{enumerate}[label=(\alph*)]
-      \item (5 points)\quad
+      \item \points{5}\quad
         $\displaystyle\int\cos x\,\sqrt{1+\sin x}\,dx$
 
         \begin{solution}
@@ -199,7 +204,7 @@ decimal approximations.
         \end{solution}
         \vfill
 
-      \item (5 points)\quad
+      \item \points{5}\quad
         $\displaystyle\int_1^4\frac{dx}{\sqrt{x}\,\bigl(1+\sqrt{x}\bigr)^2}$
 
         \begin{solution}
@@ -216,7 +221,7 @@ decimal approximations.
     \newpage
 
   \item \points{15}
-    Find the total area of the region enclosed by the curves $y=x^3$ and
+    Find the total (unsigned) area enclosed by the curves $y=x^3$ and
     $y=x^2+2x$.
 
     \begin{solution}
@@ -234,7 +239,7 @@ decimal approximations.
     \end{solution}
     \workspace
 
-  \item \points{20}
+  \item \points{25}
     Let $r>0$ and $h>0$. Revolving the disk
     $x^2+\bigl(y-(h+r)\bigr)^2\le r^2$, which has radius $r$ and center
     $(0,h+r)$, about the $x$-axis produces a solid called a \emph{torus};
@@ -339,28 +344,13 @@ decimal approximations.
       answer to Homework~3, Problem~2.
     \end{solution}
     \workspace
-
-  \item \points{15}
-    Let $R$ be the region bounded by the curve $y=\sqrt{x}$, the $x$-axis,
-    and the line $x=4$. Find the volume of the solid obtained by revolving
-    $R$ about the line $x=4$.
-
-    \begin{solution}
-      \emph{Shells.} The vertical strip at $x$, for $0\le x\le 4$, has height
-      $\sqrt{x}$ and lies at distance $4-x$ from the axis, so
-      \[
-        V=\int_0^4 2\pi(4-x)\sqrt{x}\,dx
-         =2\pi\Bigl[\frac83x^{3/2}-\frac25x^{5/2}\Bigr]_0^4
-         =2\pi\Bigl(\frac{64}{3}-\frac{64}{5}\Bigr)=\frac{256\pi}{15}.
-      \]
-      \emph{Washers.} The cross-section at height $y$, for $0\le y\le 2$, is
-      a disk of radius $4-y^2$, so
-      \[
-        V=\pi\int_0^2\bigl(4-y^2\bigr)^2\,dy
-         =\pi\Bigl(32-\frac{64}{3}+\frac{32}{5}\Bigr)=\frac{256\pi}{15}.
-      \]
-    \end{solution}
-    \vfill
 \end{enumerate}
+
+\begin{center}
+  {\Large\bfseries Extra Space}\\[0.3em]
+  \noindent\rule{\linewidth}{0.4pt}
+\end{center}
+
+% \framebox[\textwidth]{\rule{0pt}{8.65in}}
 
 \end{document}
