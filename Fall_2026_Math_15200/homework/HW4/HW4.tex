@@ -1,0 +1,71 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Homework 4: Logarithms and Exponentials}
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{0.8em}
+
+\textbf{Due:} Monday, November 9, 2026, at 11:59 PM.
+
+This is the written portion of Homework 4; complete the routine online portion
+separately in Edfinity. Upload your written solutions to Gradescope, via Canvas. You may
+collaborate, but you must write and submit your own solutions independently.
+
+
+
+\vspace{0.8em}
+
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=1.25em]
+  \item For each positive integer $n$, let \(H_n\) be the harmonic sum
+    \[
+      H_n=1+\frac12+\frac13+\cdots+\frac1n.
+    \]
+    Show that \(H_n\) grows logarithmically by proving that 
+    \[
+      \ln(n+1)\le H_n\le 1+\ln n.
+    \]
+
+    \emph{Hint:} If $k\le t\le k+1$, then $\frac{1}{k+1}\le\frac1t\le\frac1k$.
+    Use Problem~2 of Homework~2 to integrate these inequalities over
+    $[k,k+1]$. Then add the results: over $k=1,\dots,n$ for the lower bound,
+    and over $k=1,\dots,n-1$ for the upper bound.
+
+  \item Without using a calculator, determine which is larger, $e^\pi$ or
+    $\pi^e$.
+
+    \emph{Hint:} Since $\ln$ is increasing, it is enough to compare
+    $\ln\bigl(e^\pi\bigr)$ and $\ln\bigl(\pi^e\bigr)$. Rewrite this as a
+    comparison of $g(e)$ and $g(\pi)$, where $g(x)=\frac{\ln x}{x}$ for
+    $x>0$. Find where $g$ is increasing and where it is decreasing.
+
+  \item Let $b>0$, and let $R$ be the region bounded by the curve
+    $y=e^{-x^2}$, the $x$-axis, the $y$-axis, and the line $x=b$. The function
+    $e^{-x^2}$ has no antiderivative given by a formula in familiar functions,
+    so the area of $R$ cannot be computed directly with the Fundamental
+    Theorem of Calculus.
+    \begin{enumerate}[label=(\alph*)]
+      \item Find the volume $V(b)$ of the solid formed by revolving $R$ about
+        the $y$-axis.
+      \item Find $\displaystyle\lim_{b\to\infty}V(b)$.
+    \end{enumerate}
+
+    \emph{Hint:} Use the shell method, and then the substitution $u=x^2$.
+\end{enumerate}
+
+\end{document}
