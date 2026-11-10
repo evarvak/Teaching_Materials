@@ -1,0 +1,75 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Homework 5: Inverse Functions and Techniques of Integration}
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{0.8em}
+
+\textbf{Due:} Monday, November 16, 2026, at 11:59 PM.
+
+This is the written portion of Homework 5; complete the routine online portion
+separately in Edfinity. Upload your written solutions to Gradescope, via Canvas. You may
+collaborate, but you must write and submit your own solutions independently.
+
+
+
+\vspace{0.8em}
+
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=1.25em]
+  \item Let $f(x)=x+e^x$. Since $f'(x)=1+e^x>0$, the function $f$ is
+    increasing, so it has an inverse function $f^{-1}$. There is no formula
+    for $f^{-1}$ in terms of familiar functions. Nevertheless, evaluate
+    \[
+      \int_1^{1+e}f^{-1}(y)\,dy.
+    \]
+
+    \emph{Hint:} First show that 
+    \[
+      \int_{f(a)}^{f(b)}f^{-1}(y)\,dy=b\,f(b)-a\,f(a)-\int_a^b f(x)\,dx.
+    \]
+    To do this, make the substitution $y=f(x)$ on the left side, and then
+    integrate by parts. Then find $a$ and $b$ with $f(a)=1$ and $f(b)=1+e$.
+
+  \item For all $x \neq 0$, set 
+    \[
+      g(x)=\arctan x+\arctan\Bigl(\frac1x\Bigr).
+    \]
+    Show that $g'(x)=0$ for every $x\ne0$. Then show that
+    $g(x)=\frac\pi2$ for $x>0$ and $g(x)=-\frac\pi2$ for $x<0$. Since $g'$
+    is zero wherever $g$ is defined, why doesn't this contradict the fact that
+    a function whose derivative is zero at every point of an interval is
+    constant on that interval?
+
+    \emph{Hint:} Once you know that $g$ is constant on $(0,\infty)$ and
+    constant on $(-\infty,0)$, find each constant by evaluating $g$ at a
+    convenient point of that interval.
+
+  \item Let $a,b>0$. Find the area enclosed by the ellipse
+    \[
+      \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+    \]
+    Check that when $a=b=r$, your answer is the area of a circle of radius
+    $r$.
+
+    \emph{Hint:} By symmetry, the area is four times the area of the part of
+    the ellipse in the first quadrant. Solve for $y$ on the upper half of the
+    ellipse, set up the integral, and use the substitution $x=a\sin\theta$.
+\end{enumerate}
+
+\end{document}
