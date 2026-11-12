@@ -1,0 +1,432 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{xcolor}
+
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\setlength{\emergencystretch}{2em}
+
+% Solutions are hidden unless \showsolutions is defined; midterm2_review_key.tex
+% does this and then inputs this file, producing the solutions as a separate PDF.
+\newif\ifsolutions
+\ifdefined\showsolutions\solutionstrue\fi
+
+\NewEnviron{solution}{%
+  \ifsolutions
+    \par{\color{blue!55!black}\textbf{Solution.} \BODY\par}%
+  \fi}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries MATH 15200: Calculus II}\\
+  {\large\bfseries Midterm 2 Review Problems}
+  \ifsolutions\\[0.3em]{\color{blue!55!black}\large\bfseries SOLUTIONS}\fi
+\end{center}
+
+\vspace{0.25em}
+\hrule
+\vspace{0.8em}
+
+% Formulas go here
+
+\vspace{0.5em}
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2em,itemsep=1.25em]
+  \item Compute
+    \(
+      \log_2 3\cdot\log_3 4\cdot\log_4 5\cdots\log_{63}64.
+    \)
+
+    \begin{solution}
+      By the change of base formula, $\log_k(k+1)=\dfrac{\ln(k+1)}{\ln k}$,
+      so the product telescopes:
+      \[
+        \frac{\ln 3}{\ln 2}\cdot\frac{\ln 4}{\ln 3}\cdot\frac{\ln 5}{\ln 4}
+        \cdots\frac{\ln 64}{\ln 63}
+        =\frac{\ln 64}{\ln 2}=\log_2 64=6.
+      \]
+    \end{solution}
+
+  \item Evaluate
+    $\displaystyle\int_1^2\frac{dx}{\sqrt{3+2x-x^2}}$. \emph{Hint:} Set \(u = x-1\).
+
+    \begin{solution}
+      Let $u=x-1$, so $du=dx$ and $x=u+1$; the bounds become $0$ and $1$.
+      Since $3+2x-x^2=3+2(u+1)-(u+1)^2=4-u^2$,
+      \[
+        \int_1^2\frac{dx}{\sqrt{3+2x-x^2}}=\int_0^1\frac{du}{\sqrt{4-u^2}}.
+      \]
+      Now let $u=2\sin\theta$ with $-\frac\pi2\le\theta\le\frac\pi2$. Then
+      $du=2\cos\theta\,d\theta$ and $\sqrt{4-u^2}=2\cos\theta$, because
+      $\cos\theta\ge0$. When $u=0$, $\theta=0$, and when $u=1$,
+      $\sin\theta=\frac12$, so $\theta=\frac\pi6$. Hence
+      \[
+        \int_0^1\frac{du}{\sqrt{4-u^2}}
+        =\int_0^{\pi/6}\frac{2\cos\theta}{2\cos\theta}\,d\theta
+        =\frac\pi6.
+      \]
+      (Equivalently, $\int_0^1\frac{du}{\sqrt{4-u^2}}
+      =\bigl[\arcsin\frac u2\bigr]_0^1=\arcsin\frac12=\frac\pi6$.)
+    \end{solution}
+
+  \item Prove that $\arcsin x+\arccos x=\dfrac\pi2$ for every $x$ in
+    $[-1,1]$.
+
+    \begin{solution}
+      Let $f(x)=\arcsin x+\arccos x$. For $-1<x<1$,
+      \[
+        f'(x)=\frac{1}{\sqrt{1-x^2}}-\frac{1}{\sqrt{1-x^2}}=0,
+      \]
+      so $f$ is constant on $(-1,1)$. Since $f(0)=0+\frac\pi2=\frac\pi2$, we
+      get $f(x)=\frac\pi2$ for $-1<x<1$. At the endpoints,
+      $f(1)=\frac\pi2+0=\frac\pi2$ and $f(-1)=-\frac\pi2+\pi=\frac\pi2$.
+      (Alternatively, $f$ is continuous on $[-1,1]$, so the endpoint values
+      follow from the interior values.)
+    \end{solution}
+
+  \item Evaluate exactly:
+    \begin{enumerate}[label=(\alph*)]
+      \item $\arcsin\bigl(\sin\frac{5\pi}{6}\bigr)$
+      \item $\arccos\bigl(\cos(-\frac{\pi}{3})\bigr)$
+      \item $\tan\bigl(\arcsin\frac13\bigr)$
+      \item $\sin\bigl(2\arccos\frac35\bigr)$
+      \item $\cos(\arctan x)$
+    \end{enumerate}
+
+    \begin{solution}
+      \begin{enumerate}[label=(\alph*)]
+        \item $\sin\frac{5\pi}{6}=\frac12$, and $\frac\pi6$ is the angle in
+          $[-\frac\pi2,\frac\pi2]$ with sine $\frac12$, so the answer is
+          $\frac\pi6$ (not $\frac{5\pi}{6}$).
+        \item $\cos(-\frac\pi3)=\frac12$, and $\frac\pi3$ is the angle in
+          $[0,\pi]$ with cosine $\frac12$, so the answer is $\frac\pi3$.
+        \item Let $\theta=\arcsin\frac13$. Since
+          $\theta\in[-\frac\pi2,\frac\pi2]$, $\cos\theta\ge0$, so
+          $\cos\theta=\sqrt{1-\frac19}=\frac{2\sqrt2}{3}$ and
+          $\tan\theta=\dfrac{1/3}{2\sqrt2/3}=\dfrac{1}{2\sqrt2}=\dfrac{\sqrt2}{4}$.
+        \item Let $\theta=\arccos\frac35$. Since $\theta\in[0,\pi]$,
+          $\sin\theta\ge0$, so $\sin\theta=\frac45$ and
+          $\sin2\theta=2\sin\theta\cos\theta=2\cdot\frac45\cdot\frac35
+          =\frac{24}{25}$.
+        \item Let $\theta=\arctan x$. Since
+          $\theta\in(-\frac\pi2,\frac\pi2)$, $\cos\theta>0$. From
+          $\sec^2\theta=1+\tan^2\theta=1+x^2$ we get
+          $\cos(\arctan x)=\dfrac{1}{\sqrt{1+x^2}}$.
+      \end{enumerate}
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_0^2 x^3\sqrt{4-x^2}\,dx$.
+
+    \begin{solution}
+      Let $x=2\sin\theta$ with $0\le\theta\le\frac\pi2$, so
+      $dx=2\cos\theta\,d\theta$ and $\sqrt{4-x^2}=2\cos\theta$; the bounds
+      become $0$ and $\frac\pi2$. Then
+      \[
+        \int_0^2 x^3\sqrt{4-x^2}\,dx
+        =\int_0^{\pi/2}8\sin^3\theta\cdot2\cos\theta\cdot2\cos\theta\,d\theta
+        =32\int_0^{\pi/2}\bigl(1-\cos^2\theta\bigr)\cos^2\theta\sin\theta\,d\theta.
+      \]
+      With $w=\cos\theta$, $dw=-\sin\theta\,d\theta$, this is
+      \[
+        32\int_0^1\bigl(w^2-w^4\bigr)\,dw=32\Bigl(\frac13-\frac15\Bigr)
+        =\frac{64}{15}.
+      \]
+      \emph{Alternatively,} with $u=4-x^2$, we have $x^2=4-u$ and
+      $x\,dx=-\frac12\,du$, and the bounds become $4$ and $0$. So
+      \[
+        \int_0^2 x^2\sqrt{4-x^2}\,x\,dx
+        =\frac12\int_0^4(4-u)\sqrt u\,du
+        =\frac12\Bigl[\frac83u^{3/2}-\frac25u^{5/2}\Bigr]_0^4
+        =\frac12\Bigl(\frac{64}{3}-\frac{64}{5}\Bigr)=\frac{64}{15}.
+      \]
+    \end{solution}
+
+  \item Prove that $\ln(ab)=\ln a+\ln b$ for all $a,b>0$. 
+  \emph{Hint:} Fix $a>0$, and differentiate the function 
+  $\ln(ax)-\ln x$.
+
+    \begin{solution}
+      Fix $a>0$ and let $g(x)=\ln(ax)-\ln x$ for $x>0$. By the chain rule,
+      \[
+        g'(x)=\frac{a}{ax}-\frac1x=0,
+      \]
+      so $g$ is constant on $(0,\infty)$. Since
+      $g(1)=\ln a-\ln 1=\ln a$, we get $\ln(ax)-\ln x=\ln a$ for every
+      $x>0$. Taking $x=b$ gives $\ln(ab)=\ln a+\ln b$.
+    \end{solution}
+
+  \item The function $f(x)=e^{2x}+3x$ is one-to-one. Find
+    $\bigl(f^{-1}\bigr)'(1)$.
+
+    \begin{solution}
+      Since $f(0)=1$, we have $f^{-1}(1)=0$. Also $f'(x)=2e^{2x}+3$, so
+      $f'(0)=5$. Therefore
+      \[
+        \bigl(f^{-1}\bigr)'(1)=\frac{1}{f'\bigl(f^{-1}(1)\bigr)}
+        =\frac{1}{f'(0)}=\frac15.
+      \]
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int\frac{dx}{x^2\sqrt{4-x^2}}$.
+
+    \begin{solution}
+      Let $x=2\sin\theta$ with $-\frac\pi2<\theta<\frac\pi2$. Then
+      $dx=2\cos\theta\,d\theta$ and $\sqrt{4-x^2}=2\cos\theta$, so
+      \[
+        \int\frac{dx}{x^2\sqrt{4-x^2}}
+        =\int\frac{2\cos\theta}{4\sin^2\theta\cdot2\cos\theta}\,d\theta
+        =\frac14\int\csc^2\theta\,d\theta
+        =-\frac14\cot\theta+C.
+      \]
+      Since $\sin\theta=\frac x2$ and $\cos\theta=\frac{\sqrt{4-x^2}}{2}$,
+      $\cot\theta=\frac{\sqrt{4-x^2}}{x}$, and the answer is
+      \[
+        -\frac{\sqrt{4-x^2}}{4x}+C.
+      \]
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_1^4 e^{\sqrt x}\,dx$.
+
+
+    \begin{solution}
+      Let $w=\sqrt x$, so $x=w^2$ and $dx=2w\,dw$; the bounds become $1$
+      and $2$. Then integrate by parts with $u=2w$ and $dv=e^w\,dw$:
+      \[
+        \int_1^4 e^{\sqrt x}\,dx=\int_1^2 2we^w\,dw
+        =\Bigl[2we^w\Bigr]_1^2-\int_1^2 2e^w\,dw
+        =\bigl(4e^2-2e\bigr)-\bigl(2e^2-2e\bigr)=2e^2.
+      \]
+    \end{solution}
+
+  \item The function $f(x)=x^3+x+1$ is one-to-one. Find
+    $\bigl(f^{-1}\bigr)'(3)$.
+
+    \begin{solution}
+      Since $f(1)=3$, we have $f^{-1}(3)=1$. Also $f'(x)=3x^2+1$, so
+      $f'(1)=4$. Therefore
+      \[
+        \bigl(f^{-1}\bigr)'(3)=\frac{1}{f'\bigl(f^{-1}(3)\bigr)}
+        =\frac{1}{f'(1)}=\frac14.
+      \]
+    \end{solution}
+
+  \item Prove that $e^x\ge 1+x$ for every real number $x$.
+
+    \begin{solution}
+      Let $g(x)=e^x-1-x$, so $g'(x)=e^x-1$. Since $\exp$ is increasing and
+      $e^0=1$, we have $g'(x)<0$ for $x<0$ and $g'(x)>0$ for $x>0$. Hence $g$
+      is decreasing on $(-\infty,0]$ and increasing on $[0,\infty)$, so
+      $g(x)\ge g(0)=0$ for every $x$. That is, $e^x\ge1+x$.
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_3^6\frac{\sqrt{x^2-9}}{x}\,dx$.
+
+    \begin{solution}
+      Let $x=3\sec\theta$ with $0\le\theta<\frac\pi2$. Then
+      $dx=3\sec\theta\tan\theta\,d\theta$ and
+      $\sqrt{x^2-9}=3\sqrt{\sec^2\theta-1}=3\tan\theta$, because
+      $\tan\theta\ge0$. When $x=3$, $\theta=0$, and when $x=6$,
+      $\sec\theta=2$, so $\theta=\frac\pi3$. Hence
+      \begin{align*}
+        \int_3^6\frac{\sqrt{x^2-9}}{x}\,dx
+        &=\int_0^{\pi/3}\frac{3\tan\theta}{3\sec\theta}\cdot
+          3\sec\theta\tan\theta\,d\theta
+        =3\int_0^{\pi/3}\tan^2\theta\,d\theta\\
+        &=3\int_0^{\pi/3}\bigl(\sec^2\theta-1\bigr)\,d\theta
+        =3\Bigl[\tan\theta-\theta\Bigr]_0^{\pi/3}
+        =3\sqrt3-\pi.
+      \end{align*}
+    \end{solution}
+
+  \item Let $f(x)=\dfrac{e^x}{1+e^x}$. Find a formula for $f^{-1}$, and give
+    its domain.
+
+    \begin{solution}
+      Set $y=\dfrac{e^x}{1+e^x}$. Then $y+ye^x=e^x$, so $e^x(1-y)=y$ and
+      $e^x=\dfrac{y}{1-y}$. Hence
+      \[
+        f^{-1}(y)=\ln\Bigl(\frac{y}{1-y}\Bigr).
+      \]
+      The domain of $f^{-1}$ is the range of $f$. Writing
+      $f(x)=1-\dfrac{1}{1+e^x}$: as $x$ ranges over $\mathbb R$, $1+e^x$
+      takes every value in $(1,\infty)$, so $\dfrac1{1+e^x}$ takes every
+      value in $(0,1)$, and so does $f(x)$. The domain of $f^{-1}$ is
+      therefore $(0,1)$. (On this interval $\frac{y}{1-y}>0$, so the
+      formula makes sense.)
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int e^x\sin x\,dx$.
+
+    \begin{solution}
+      Call the integral $I$. Integrate by parts with $u=\sin x$ and
+      $dv=e^x\,dx$, and then again with $u=\cos x$ and $dv=e^x\,dx$:
+      \[
+        I=e^x\sin x-\int e^x\cos x\,dx
+         =e^x\sin x-\Bigl(e^x\cos x+\int e^x\sin x\,dx\Bigr)
+         =e^x\sin x-e^x\cos x-I.
+      \]
+      Solving for $I$,
+      \[
+        \int e^x\sin x\,dx=\frac{e^x(\sin x-\cos x)}{2}+C.
+      \]
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_0^2\frac{dx}{\bigl(x^2+4\bigr)^{3/2}}$.
+
+    \begin{solution}
+      Let $x=2\tan\theta$ with $0\le\theta\le\frac\pi4$. Then
+      $dx=2\sec^2\theta\,d\theta$ and $x^2+4=4\sec^2\theta$, so
+      $\bigl(x^2+4\bigr)^{3/2}=8\sec^3\theta$; the bounds become $0$ and
+      $\frac\pi4$. Hence
+      \[
+        \int_0^2\frac{dx}{\bigl(x^2+4\bigr)^{3/2}}
+        =\int_0^{\pi/4}\frac{2\sec^2\theta}{8\sec^3\theta}\,d\theta
+        =\frac14\int_0^{\pi/4}\cos\theta\,d\theta
+        =\frac14\cdot\frac{\sqrt2}{2}=\frac{\sqrt2}{8}.
+      \]
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int\frac{x}{1+x^4}\,dx$.
+
+    \begin{solution}
+      Let $u=x^2$, so $du=2x\,dx$. Then
+      \[
+        \int\frac{x}{1+x^4}\,dx=\frac12\int\frac{du}{1+u^2}
+        =\frac12\arctan u+C=\frac12\arctan\bigl(x^2\bigr)+C.
+      \]
+    \end{solution}
+
+  \item Differentiate:
+    \begin{enumerate}[label=(\alph*)]
+      \item $\arcsin\bigl(x^2\bigr)$
+      \item $\arctan\bigl(\sqrt x\bigr)$
+      \item $x\arccos x-\sqrt{1-x^2}$
+    \end{enumerate}
+
+    \begin{solution}
+      \begin{enumerate}[label=(\alph*)]
+        \item $\dfrac{1}{\sqrt{1-(x^2)^2}}\cdot2x=\dfrac{2x}{\sqrt{1-x^4}}$.
+        \item $\dfrac{1}{1+(\sqrt x)^2}\cdot\dfrac{1}{2\sqrt x}
+          =\dfrac{1}{2\sqrt x\,(1+x)}$.
+        \item $\arccos x+x\cdot\Bigl(-\dfrac{1}{\sqrt{1-x^2}}\Bigr)
+          -\dfrac{-2x}{2\sqrt{1-x^2}}=\arccos x$.
+          (So $x\arccos x-\sqrt{1-x^2}$ is an antiderivative of
+          $\arccos x$.)
+      \end{enumerate}
+    \end{solution}
+
+  \item Solve $\log_2(x)+\log_2(x-2)=3$.
+
+    \begin{solution}
+      Both logarithms are defined only when $x>2$. For such $x$, the equation
+      says $\log_2\bigl(x(x-2)\bigr)=3$, that is, $x^2-2x=8$. So
+      $(x-4)(x+2)=0$, and $x=4$ or $x=-2$. Since $-2$ is not in the domain,
+      the only solution is $x=4$. (Check: $\log_2 4+\log_2 2=2+1=3$.)
+    \end{solution}
+
+  \item Let $R$ be the region between the curve $y=\sin x$ and the $x$-axis
+    for $0\le x\le\pi$. Find the volume of the solid formed by revolving $R$
+    about the $y$-axis.
+
+    \begin{solution}
+      By the shell method, $V=\displaystyle\int_0^\pi2\pi x\sin x\,dx$.
+      Integrating by parts with $u=x$ and $dv=\sin x\,dx$,
+      \[
+        \int_0^\pi x\sin x\,dx=\Bigl[-x\cos x\Bigr]_0^\pi+\int_0^\pi\cos x\,dx
+        =\pi+\Bigl[\sin x\Bigr]_0^\pi=\pi.
+      \]
+      Hence $V=2\pi\cdot\pi=2\pi^2$.
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_0^{1/2}\frac{x^2}{\sqrt{1-x^2}}\,dx$.
+
+    \begin{solution}
+      Let $x=\sin\theta$ with $0\le\theta\le\frac\pi6$. Then
+      $dx=\cos\theta\,d\theta$ and $\sqrt{1-x^2}=\cos\theta$, so
+      \[
+        \int_0^{1/2}\frac{x^2}{\sqrt{1-x^2}}\,dx
+        =\int_0^{\pi/6}\sin^2\theta\,d\theta
+        =\int_0^{\pi/6}\frac{1-\cos2\theta}{2}\,d\theta
+        =\Bigl[\frac\theta2-\frac{\sin2\theta}{4}\Bigr]_0^{\pi/6}
+        =\frac{\pi}{12}-\frac{\sqrt3}{8}.
+      \]
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int xe^{2x}\,dx$.
+
+    \begin{solution}
+      Integrate by parts with $u=x$ and $dv=e^{2x}\,dx$, so $du=dx$ and
+      $v=\frac12e^{2x}$:
+      \[
+        \int xe^{2x}\,dx=\frac12xe^{2x}-\frac12\int e^{2x}\,dx
+        =\frac12xe^{2x}-\frac14e^{2x}+C.
+      \]
+    \end{solution}
+
+  \item Suppose $f$ is differentiable and increasing, with $f(1)=2$ and
+    $f'(1)=3$, and let $g=f^{-1}$. If $h(x)=x\,g(x)$, find $h'(2)$.
+
+    \begin{solution}
+      By the product rule, $h'(x)=g(x)+x\,g'(x)$. Since $f(1)=2$,
+      $g(2)=1$, and
+      \[
+        g'(2)=\frac{1}{f'\bigl(g(2)\bigr)}=\frac{1}{f'(1)}=\frac13.
+      \]
+      Hence $h'(2)=1+2\cdot\frac13=\frac53$.
+    \end{solution}
+
+  \item Evaluate $\displaystyle\int_1^e x^2\ln x\,dx$.
+
+    \begin{solution}
+      Integrate by parts with $u=\ln x$ and $dv=x^2\,dx$, so
+      $du=\frac{dx}{x}$ and $v=\frac{x^3}{3}$:
+      \[
+        \int_1^e x^2\ln x\,dx=\Bigl[\frac{x^3}{3}\ln x\Bigr]_1^e
+          -\int_1^e\frac{x^2}{3}\,dx
+        =\frac{e^3}{3}-\Bigl[\frac{x^3}{9}\Bigr]_1^e
+        =\frac{e^3}{3}-\frac{e^3-1}{9}=\frac{2e^3+1}{9}.
+      \]
+    \end{solution}
+
+  \item Evaluate:
+    \begin{enumerate}[label=(\alph*)]
+      \item $\displaystyle\int_0^3 2^x\,dx$
+      \item $\displaystyle\int x\,3^{x^2}\,dx$
+    \end{enumerate}
+
+    \begin{solution}
+      \begin{enumerate}[label=(\alph*)]
+        \item Since $\frac{d}{dx}2^x=2^x\ln2$,
+          $\displaystyle\int_0^3 2^x\,dx=\Bigl[\frac{2^x}{\ln2}\Bigr]_0^3
+          =\frac{8-1}{\ln2}=\frac{7}{\ln2}$.
+        \item Let $u=x^2$, so $du=2x\,dx$. Then
+          $\displaystyle\int x\,3^{x^2}\,dx=\frac12\int3^u\,du
+          =\frac{3^u}{2\ln3}+C=\frac{3^{x^2}}{2\ln3}+C$.
+      \end{enumerate}
+    \end{solution}
+
+  \item Evaluate
+    $\displaystyle\int_{\sqrt2}^2\frac{dx}{x^2\sqrt{x^2-1}}$.
+
+    \begin{solution}
+      Let $x=\sec\theta$ with $0\le\theta<\frac\pi2$. Then
+      $dx=\sec\theta\tan\theta\,d\theta$ and $\sqrt{x^2-1}=\tan\theta$,
+      because $\tan\theta\ge0$. When $x=\sqrt2$, $\theta=\frac\pi4$, and when
+      $x=2$, $\theta=\frac\pi3$. Hence
+      \[
+        \int_{\sqrt2}^2\frac{dx}{x^2\sqrt{x^2-1}}
+        =\int_{\pi/4}^{\pi/3}\frac{\sec\theta\tan\theta}{\sec^2\theta\tan\theta}
+          \,d\theta
+        =\int_{\pi/4}^{\pi/3}\cos\theta\,d\theta
+        =\frac{\sqrt3}{2}-\frac{\sqrt2}{2}.
+      \]
+    \end{solution}
+\end{enumerate}
+
+\end{document}
